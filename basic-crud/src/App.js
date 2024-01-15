@@ -7,6 +7,7 @@ import Customers from "./components/Customers";
 import Refunds from "./components/Refunds";
 import Config from "./components/Config";
 import NoMatch from "./components/NoMatch";
+import "./index.css";
 
 function App() {
   return (
