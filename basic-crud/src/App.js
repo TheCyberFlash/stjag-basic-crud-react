@@ -10,10 +10,10 @@ function App() {
         <Sidebar />
         <Routes>
           <Route exact path="/" element={<Homepage />} />
-          {/* <Route exact path="/orders" component={Orders} /> */}
-          {/* <Route exact path="/customers" component={Customers} /> */}
-          {/* <Route exact path="/refunds" component={Refunds} /> */}
-          {/* <Route exact path="/config" component={Config} /> */}
+          {/* <Route exact path="/orders" element={<Orders />} /> */}
+          {/* <Route exact path="/customers" element={<Customers />} /> */}
+          {/* <Route exact path="/refunds" element={<Refunds />} /> */}
+          {/* <Route exact path="/config" element={<Config />} /> */}
           {/* <Route component={NoMatch} /> */}
         </Routes>
       </div>
