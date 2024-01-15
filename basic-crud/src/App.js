@@ -16,7 +16,7 @@ function App() {
         <Sidebar />
         <div className="main-content">
           <Routes>
-            <Route exact path="/" element={<Homepage />} />
+            <Route exact path="/stjag-basic-crud-react/" element={<Homepage />} />
             <Route exact path="/orders" element={<Orders />} />
             <Route exact path="/customers" element={<Customers />} />
             <Route exact path="/refunds" element={<Refunds />} />
