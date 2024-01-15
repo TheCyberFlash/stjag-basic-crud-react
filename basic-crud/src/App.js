@@ -6,6 +6,7 @@ import Orders from "./components/Orders";
 import Customers from "./components/Customers";
 import Refunds from "./components/Refunds";
 import Config from "./components/Config";
+import NoMatch from "./components/NoMatch";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
           <Route exact path="/customers" element={<Customers />} />
           <Route exact path="/refunds" element={<Refunds />} />
           <Route exact path="/config" element={<Config />} />
-          {/* <Route component={NoMatch} /> */}
+          <Route path="/*" element={<NoMatch />} />
         </Routes>
       </div>
     </Router>
