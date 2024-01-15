@@ -12,16 +12,18 @@ import "./index.css";
 function App() {
   return (
     <Router>
-      <div>
+      <div className="app-container">
         <Sidebar />
-        <Routes>
-          <Route exact path="/" element={<Homepage />} />
-          <Route exact path="/orders" element={<Orders />} />
-          <Route exact path="/customers" element={<Customers />} />
-          <Route exact path="/refunds" element={<Refunds />} />
-          <Route exact path="/config" element={<Config />} />
-          <Route path="/*" element={<NoMatch />} />
-        </Routes>
+        <div className="main-content">
+          <Routes>
+            <Route exact path="/" element={<Homepage />} />
+            <Route exact path="/orders" element={<Orders />} />
+            <Route exact path="/customers" element={<Customers />} />
+            <Route exact path="/refunds" element={<Refunds />} />
+            <Route exact path="/config" element={<Config />} />
+            <Route path="/*" element={<NoMatch />} />
+          </Routes>
+        </div>
       </div>
     </Router>
   );
