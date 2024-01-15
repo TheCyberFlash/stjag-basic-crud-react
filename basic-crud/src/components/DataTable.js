@@ -2,7 +2,8 @@ import React from 'react';
 
 const DataTable = ({ columns, data }) => {
   return (
-    <table>
+    <div className="table-container">
+        <table>
       <thead>
         <tr>
           {columns.map((column, index) => (
@@ -20,6 +21,7 @@ const DataTable = ({ columns, data }) => {
         ))}
       </tbody>
     </table>
+    </div>
   );
 };
 
