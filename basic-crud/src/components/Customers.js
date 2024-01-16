@@ -51,11 +51,17 @@ const Customers = () => {
         alert(`Delete action for row with Customer ID.: ${record['Customer ID']}`);
     }
 
+    const handleSaveChanges = () => {
+        alert('Save Changes action');
+        closeModal();
+    }
+
     return (
         <div>
             <h1>Customers</h1>
-            <DataTable columns={columns} data={data} handleCreate={handleCreate} handleEdit={handleEdit} handleDelete={handleDelete} />
-            <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} />
+            <DataTable columns={columns} data={data} handleCreate={handleCreate} handleEdit={handleEdit} 
+                handleDelete={handleDelete} />
+            <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} handleSaveChanges={handleSaveChanges}/>
         </div>
     )
 }

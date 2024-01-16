@@ -44,17 +44,23 @@ const Orders = () => {
 
     const handleEdit = (record) => {
         alert(`Edit action for row with Order No.: ${record['Order No.']}`);
-        }
+    }
 
     const handleDelete = (record) => {
         alert(`Delete action for row with Order No.: ${record['Order No.']}`);
-        }
+    }
+
+    const handleSaveChanges = () => {
+        alert('Save Changes action');
+        closeModal();
+    }
 
     return (
         <div>
             <h1>Orders</h1>
-            <DataTable columns={columns} data={data} handleCreate={handleCreate} handleEdit={handleEdit} handleDelete={handleDelete} />
-            <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} />
+            <DataTable columns={columns} data={data} handleCreate={handleCreate} handleEdit={handleEdit} 
+                handleDelete={handleDelete} />
+            <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} handleSaveChanges={handleSaveChanges}/>
         </div>
     )
 }

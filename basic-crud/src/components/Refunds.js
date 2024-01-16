@@ -52,11 +52,17 @@ const Refunds = () => {
         alert(`Delete action for row with Refund ID.: ${record['Refund ID']}`);
     }
 
+    const handleSaveChanges = () => {
+        alert('Save Changes action');
+        closeModal();
+    }
+
     return (
         <div>
             <h1>Refunds</h1>
-            <DataTable columns={columns} data={data} handleCreate={handleCreate} handleEdit={handleEdit} handleDelete={handleDelete} />
-            <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} />
+            <DataTable columns={columns} data={data} handleCreate={handleCreate} handleEdit={handleEdit} 
+                handleDelete={handleDelete} />            
+            <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} handleSaveChanges={handleSaveChanges}/>
         </div>
     )
 }

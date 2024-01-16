@@ -1,6 +1,6 @@
 import React from "react";
 
-const Modal = ({ isOpen, closeModal, fields}) => {
+const Modal = ({ isOpen, closeModal, fields, handleSaveChanges }) => {
     return (
         isOpen && (
             <div className="modal">
@@ -15,6 +15,8 @@ const Modal = ({ isOpen, closeModal, fields}) => {
                             {field.type === "boolean" && <input type="checkbox" />}
                         </div>
                     ))}
+
+                    <button className="modal-save" onClick={handleSaveChanges}>Save Changes</button>
                 </div>
             </div>
         )
