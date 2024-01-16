@@ -17,8 +17,9 @@ code {
 }
 
 .main-content {
-  margin-left: 200px;
+  margin-left: 250px;
   padding: 0px 10px;
+  width: 100%;
 }
 
 h1 {
@@ -57,7 +58,7 @@ h1 {
 }
 
 .table-container {
-  width: 100%;
+  width: 85%;
   margin-top: 20px;
   overflow-x: auto;
 }
@@ -66,19 +67,41 @@ table {
   border-collapse: collapse;
   width: 100%;
   margin-bottom: 20px;
+  table-layout: auto;
 }
 
 th, td {
-  padding: 12px;
-  text-align: left;
+  padding: 10px;
+  text-align: right;
   border-bottom: 1px solid #ddd;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 th {
   background-color: #f2f2f2;
   color: #99c3ec;
+  border-bottom: 2px solid #99c3ec;
 }
 
 tr:hover {
   background-color: #f5f5f5;
 }
+
+tr.even-row {
+  background-color: #fff;
+}
+
+tr.odd-row {
+  background-color: #f5f5f5;
+}
+
+tr.even-row td.highlight{
+  background-color: #c9e0f7;
+}
+
+tr.odd-row td.highlight{
+  background-color: #99c3ec;
+}
+

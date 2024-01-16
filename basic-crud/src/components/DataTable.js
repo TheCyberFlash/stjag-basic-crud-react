@@ -13,9 +13,9 @@ const DataTable = ({ columns, data }) => {
       </thead>
       <tbody>
         {data.map((row, rowIndex) => (
-          <tr key={rowIndex}>
+          <tr key={rowIndex} className={rowIndex % 2 === 0 ? "even-row" : "odd-row"}>
             {columns.map((column, colIndex) => (
-              <td key={colIndex}>{row[column].toString()}</td>
+              <td key={colIndex} className={colIndex === 0 ? "highlight" : ""}>{row[column].toString()}</td>
             ))}
           </tr>
         ))}
