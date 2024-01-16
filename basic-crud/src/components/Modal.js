@@ -5,7 +5,7 @@ const Modal = ({ isOpen, closeModal, fields}) => {
         isOpen && (
             <div>
                 <div>
-                    <span>&times;</span>
+                    <span onClick={closeModal}>&times;</span>
 
                     {fields.map((field, index) => (
                         <div key={index}> 
