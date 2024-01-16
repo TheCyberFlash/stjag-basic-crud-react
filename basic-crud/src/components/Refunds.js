@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import DataTable from "./DataTable";
+import Modal from "./Modal";
 
 const Refunds = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const fields = [
+        { label: 'Refund ID', type: 'text' },
+        { label: 'Order No', type: 'text' },
+        { label: 'Customer ID', type: 'number' },
+        { label: 'Customer Name', type: 'text' },
+        { label: 'Reason', type: 'text' },
+        { label: 'Ref Status', type: 'text' },
+        { label: 'Amount', type: 'number' },
+        { label: 'Partial', type: 'boolean' },
+    ];
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    }
 
     const columns = ['Refund ID', 'Order No', 'Customer ID', 'Customer Name', 'Reason', 'Ref Status', 'Amount', 'Partial'];
-  // Dummy data
-  const data = [
+
+    const data = [
         { 'Refund ID': 'REF-001', 'Order No': 'ORD-001', 'Customer ID': 1, 'Customer Name': 'John Doe', 'Reason': 'Lost in Transit', 'Ref Status': 'Approved', 'Amount': 25.50, 'Partial': true },
         { 'Refund ID': 'REF-002', 'Order No': 'ORD-002', 'Customer ID': 2, 'Customer Name': 'Jane Smith','Reason': 'Defective', 'Ref Status': 'Pending', 'Amount': 30.75, 'Partial': false },
         { 'Refund ID': 'REF-003', 'Order No': 'ORD-003', 'Customer ID': 3, 'Customer Name': 'Alice Johnson','Reason': 'Defective', 'Ref Status': 'Approved', 'Amount': 15.25, 'Partial': true },
@@ -19,7 +40,8 @@ const Refunds = () => {
     ];
 
     const handleCreate = () => {
-        alert('Create action');
+        // alert('Create action');
+        openModal();
     }
 
     const handleEdit = (record) => {
@@ -34,7 +56,7 @@ const Refunds = () => {
         <div>
             <h1>Refunds</h1>
             <DataTable columns={columns} data={data} handleCreate={handleCreate} handleEdit={handleEdit} handleDelete={handleDelete} />
-
+            <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} />
         </div>
     )
 }

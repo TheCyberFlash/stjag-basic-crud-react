@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import DataTable from "./DataTable";
+import Modal from "./Modal";
 
 const Orders = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const fields = [
+        { label: 'Order No.', type: 'text' },
+        { label: 'Customer ID', type: 'number' },
+        { label: 'Del Status', type: 'text' },
+        { label: 'Amount', type: 'number' },
+        { label: 'Pay Protect', type: 'boolean' },
+        { label: 'Refund Eligible', type: 'boolean' },
+    ];
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    }
 
     const columns = ['Order No.', 'Customer ID', 'Del Status', 'Amount', 'Pay Protect', 'Refund Eligible'];
-  // Dummy data
-  const data = [
+  
+    const data = [
         { 'Order No.': 'ORD-001', 'Customer ID': 1, 'Del Status': 'Shipped', 'Amount': 50.00, 'Pay Protect': true, 'Refund Eligible': false },
         { 'Order No.': 'ORD-002', 'Customer ID': 2, 'Del Status': 'Pending', 'Amount': 75.50, 'Pay Protect': false, 'Refund Eligible': true },
         { 'Order No.': 'ORD-003', 'Customer ID': 3, 'Del Status': 'Shipped', 'Amount': 30.25, 'Pay Protect': true, 'Refund Eligible': true },
@@ -19,7 +38,8 @@ const Orders = () => {
     ];
 
     const handleCreate = () => {
-        alert('Create action');
+        // alert('Create action');
+        openModal();
     }
 
     const handleEdit = (record) => {
@@ -34,6 +54,7 @@ const Orders = () => {
         <div>
             <h1>Orders</h1>
             <DataTable columns={columns} data={data} handleCreate={handleCreate} handleEdit={handleEdit} handleDelete={handleDelete} />
+            <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} />
         </div>
     )
 }
