@@ -3,9 +3,9 @@ import React from "react";
 const Modal = ({ isOpen, closeModal, fields}) => {
     return (
         isOpen && (
-            <div>
-                <div>
-                    <span onClick={closeModal}>&times;</span>
+            <div className="modal">
+                <div className="modal-component">
+                    <span className="modal-close" onClick={closeModal}>&times;</span>
 
                     {fields.map((field, index) => (
                         <div key={index}> 
