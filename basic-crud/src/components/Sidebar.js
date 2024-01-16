@@ -4,11 +4,11 @@ import { Link} from "react-router-dom";
 const Sidebar = () => {
     return (
         <div className="sidebar">
-            <Link to="/stjag-basic-crud-react/">Home</Link>
-            <Link to="/stjag-basic-crud-react/orders">Orders</Link>
-            <Link to="/stjag-basic-crud-react/customers">Customers</Link>
-            <Link to="/stjag-basic-crud-react/refunds">Refunds</Link>
-            <Link to="/stjag-basic-crud-react/config">Config</Link>
+            <Link to="/">Home</Link>
+            <Link to="/orders">Orders</Link>
+            <Link to="/customers">Customers</Link>
+            <Link to="/refunds">Refunds</Link>
+            <Link to="/config">Config</Link>
         </div>
     )
 }

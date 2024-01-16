@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import Homepage from "./components/Homepage";
 import Orders from "./components/Orders";
@@ -16,12 +16,12 @@ function App() {
         <Sidebar />
         <div className="main-content">
           <Routes>
-            <Route exact path="/stjag-basic-crud-react/" element={<Homepage />} />
-            <Route exact path="/stjag-basic-crud-react/orders" element={<Orders />} />
-            <Route exact path="/stjag-basic-crud-react/customers" element={<Customers />} />
-            <Route exact path="/stjag-basic-crud-react/refunds" element={<Refunds />} />
-            <Route exact path="/stjag-basic-crud-react/config" element={<Config />} />
-            <Route path="/stjag-basic-crud-react/*" element={<NoMatch />} />
+            <Route exact path="/" element={<Homepage />} />
+            <Route exact path="/orders" element={<Orders />} />
+            <Route exact path="/customers" element={<Customers />} />
+            <Route exact path="/refunds" element={<Refunds />} />
+            <Route exact path="/config" element={<Config />} />
+            <Route path="/*" element={<NoMatch />} />
           </Routes>
         </div>
       </div>
