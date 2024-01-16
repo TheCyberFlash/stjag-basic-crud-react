@@ -22,12 +22,12 @@ const Customers = () => {
         alert('Create action');
     }
 
-    const handleEdit = () => {
-        alert('Edit action');
+    const handleEdit = (record) => {
+        alert(`Edit action for row with Customer ID.: ${record['Customer ID']}`);
     }
 
-    const handleDelete = () => {
-        alert('Delete action');
+    const handleDelete = (record) => {
+        alert(`Delete action for row with Customer ID.: ${record['Customer ID']}`);
     }
 
     return (

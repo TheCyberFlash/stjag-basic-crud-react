@@ -22,13 +22,13 @@ const Orders = () => {
         alert('Create action');
     }
 
-    const handleEdit = () => {
-        alert('Edit action');
-    }
+    const handleEdit = (record) => {
+        alert(`Edit action for row with Order No.: ${record['Order No.']}`);
+        }
 
-    const handleDelete = () => {
-        alert('Delete action');
-    }
+    const handleDelete = (record) => {
+        alert(`Delete action for row with Order No.: ${record['Order No.']}`);
+        }
 
     return (
         <div>

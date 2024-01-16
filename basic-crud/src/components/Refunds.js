@@ -22,12 +22,12 @@ const Refunds = () => {
         alert('Create action');
     }
 
-    const handleEdit = () => {
-        alert('Edit action');
+    const handleEdit = (record) => {
+        alert(`Edit action for row with Refund ID.: ${record['Refund ID']}`);
     }
 
-    const handleDelete = () => {
-        alert('Delete action');
+    const handleDelete = (record) => {
+        alert(`Delete action for row with Refund ID.: ${record['Refund ID']}`);
     }
 
     return (

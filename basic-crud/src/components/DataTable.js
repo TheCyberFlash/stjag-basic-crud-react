@@ -21,8 +21,8 @@ const DataTable = ({ columns, data, handleCreate, handleEdit, handleDelete }) =>
               <td key={colIndex} className={colIndex === 0 ? "highlight" : ""}>{row[column].toString()}</td>
             ))}
             <td>
-              <button className="edit" onClick={handleEdit}>Edit</button>
-              <button className="delete" onClick={handleDelete}>Delete</button>
+              <button className="edit" onClick={() => handleEdit(row)}>Edit</button>
+              <button className="delete" onClick={() => handleDelete(row)}>Delete</button>
             </td>
           </tr>
         ))}
