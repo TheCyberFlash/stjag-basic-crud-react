@@ -105,3 +105,28 @@ tr.odd-row td.highlight{
   background-color: #99c3ec;
 }
 
+button {
+  padding: 10px 14px;
+  margin: 0 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button.create {
+  background-color: #99eca0;
+}
+
+button.edit {
+  background-color: #99c3ec;
+}
+
+button.delete {
+  background-color: #ec9999;
+}

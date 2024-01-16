@@ -10,7 +10,7 @@ const DataTable = ({ columns, data, handleCreate, handleEdit, handleDelete }) =>
             <th key={index}>{column}</th>
           ))}
           <th>
-            <button onClick={handleCreate}>Create</button>
+            <button className="create" onClick={handleCreate}>Create</button>
           </th>
         </tr>
       </thead>
@@ -21,8 +21,8 @@ const DataTable = ({ columns, data, handleCreate, handleEdit, handleDelete }) =>
               <td key={colIndex} className={colIndex === 0 ? "highlight" : ""}>{row[column].toString()}</td>
             ))}
             <td>
-              <button onClick={handleEdit}>Edit</button>
-              <button onClick={handleDelete}>Delete</button>
+              <button className="edit" onClick={handleEdit}>Edit</button>
+              <button className="delete" onClick={handleDelete}>Delete</button>
             </td>
           </tr>
         ))}
