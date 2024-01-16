@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DataTable = ({ columns, data }) => {
+const DataTable = ({ columns, data, handleCreate, handleEdit, handleDelete }) => {
   return (
     <div className="table-container">
         <table>
@@ -9,6 +9,9 @@ const DataTable = ({ columns, data }) => {
           {columns.map((column, index) => (
             <th key={index}>{column}</th>
           ))}
+          <th>
+            <button onClick={handleCreate}>Create</button>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -17,6 +20,10 @@ const DataTable = ({ columns, data }) => {
             {columns.map((column, colIndex) => (
               <td key={colIndex} className={colIndex === 0 ? "highlight" : ""}>{row[column].toString()}</td>
             ))}
+            <td>
+              <button onClick={handleEdit}>Edit</button>
+              <button onClick={handleDelete}>Delete</button>
+            </td>
           </tr>
         ))}
       </tbody>
