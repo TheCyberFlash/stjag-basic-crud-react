@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/stjag-basic-crud-react/static/css/main.0c1142e5.css",
-    "main.js": "/stjag-basic-crud-react/static/js/main.63af1a05.js",
+    "main.css": "/stjag-basic-crud-react/static/css/main.682a6538.css",
+    "main.js": "/stjag-basic-crud-react/static/js/main.2518b232.js",
     "static/js/787.2cf37976.chunk.js": "/stjag-basic-crud-react/static/js/787.2cf37976.chunk.js",
     "index.html": "/stjag-basic-crud-react/index.html",
-    "main.0c1142e5.css.map": "/stjag-basic-crud-react/static/css/main.0c1142e5.css.map",
-    "main.63af1a05.js.map": "/stjag-basic-crud-react/static/js/main.63af1a05.js.map",
+    "main.682a6538.css.map": "/stjag-basic-crud-react/static/css/main.682a6538.css.map",
+    "main.2518b232.js.map": "/stjag-basic-crud-react/static/js/main.2518b232.js.map",
     "787.2cf37976.chunk.js.map": "/stjag-basic-crud-react/static/js/787.2cf37976.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0c1142e5.css",
-    "static/js/main.63af1a05.js"
+    "static/css/main.682a6538.css",
+    "static/js/main.2518b232.js"
   ]
 }
