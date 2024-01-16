@@ -21,31 +21,39 @@ code {
   padding: 0px 10px;
 }
 
+h1 {
+  color: #99c3ec;
+}
 .sidebar {
   height: 100%;
   width: 200px;
   position: fixed;
   top: 0;
   left: 0;
-  background-color:gainsboro;
+  background-color:rgb(248, 248, 247);
   padding-top: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;  
   color: aliceblue;
-  border-right: 1px solid black;
+  border-right: 1px solid #99c3ec;
 }
 
 .sidebar a {
   display: flex;
   align-items: center;
-  color: white;
+  color: #99c3ec;
   padding: 16px;
   text-decoration: none;
+  margin-left: 25px;
+}
+
+.sidebar svg {
+  margin-right: 10px;
 }
 
 .sidebar a:hover {
-  color: black;
+  color: #2793ff;
 }
 
 .table-container {
@@ -68,6 +76,7 @@ th, td {
 
 th {
   background-color: #f2f2f2;
+  color: #99c3ec;
 }
 
 tr:hover {
