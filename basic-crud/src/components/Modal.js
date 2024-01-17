@@ -10,9 +10,9 @@ const Modal = ({ isOpen, closeModal, fields, handleSaveChanges, editedRecord }) 
                     {fields.map((field, index) => (
                         <div key={index}> 
                             <label>{field.label}</label>
-                            {field.type === "text" && <input type="text" value={editedRecord ? editedRecord[field.label] : ''}/>}
-                            {field.type === "number" && <input type="number" value={editedRecord ? editedRecord[field.label] : ''}/>}
-                            {field.type === "boolean" && <input type="checkbox" checked={editedRecord ? editedRecord[field.label] : false}/>}
+                            {field.type === "text" && <input type="text" value={editedRecord ? editedRecord[field.label] : ''} onChange={() => {}}/>}
+                            {field.type === "number" && <input type="number" value={editedRecord ? editedRecord[field.label] : ''} onChange={() => {}}/>}
+                            {field.type === "boolean" && <input type="checkbox" checked={editedRecord ? editedRecord[field.label] : false} onChange={() => {}}/> }
                         </div>
                     ))}
 
