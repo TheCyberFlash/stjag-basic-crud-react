@@ -7,15 +7,13 @@ const Customers = () => {
     const [data, setData] = useState([]);
 
     const filters = {
-        firstName: ["All", "John", "Jane", "Alice", "Bob", "Eva", "Chris", "Sophia", "Daniel", "Megan", "Ryan"],
-        lastName: ["All", "Doe", "Smith", "Johnson", "Williams", "Brown", "Miller", "Anderson", "Taylor", "Carter", "Evans"],
-        company: ["All", "ABC Corp", "XYZ Inc", "Tech Solutions", "Global Innovations", "Data Systems Ltd", "Future Tech", "Innovate Inc", "Tech Connect", "Code Solutions", "Innovative Designs"],
+        confirmed : ["All", "true", "false"],
+        activeOrder : ["All", "true", "false"],
     };
 
     const filterDisplayNames = {
-        firstName: "First Name",
-        lastName: "Last Name",
-        company: "Company",
+        confirmed : "Confirmed",
+        activeOrder : "Active Order",
     };
 
     const fields = [
@@ -36,19 +34,19 @@ const Customers = () => {
         setIsModalOpen(false);
     }
 
-    const columns = ['Customer ID', 'First Name', 'Last Name', 'Phone Number', 'Email', 'Company', 'Address'];
+    const columns = ['Customer ID', 'First Name', 'Last Name', 'Phone Number', 'Email', 'Company', 'Address', 'Confirmed', 'Active Order'];
 
     const dummyData = [
-        { 'Customer ID': 1, 'First Name': 'John', 'Last Name': 'Doe', 'Phone Number': 1234567890, 'Email': 'john.doe@example.com', 'Company': 'ABC Corp', 'Address': '123 Main St' },
-        { 'Customer ID': 2, 'First Name': 'Jane', 'Last Name': 'Smith', 'Phone Number': 9876543210, 'Email': 'jane.smith@example.com', 'Company': 'XYZ Inc', 'Address': '456 Oak Ave' },
-        { 'Customer ID': 3, 'First Name': 'Alice', 'Last Name': 'Johnson', 'Phone Number': 5551234567, 'Email': 'alice.j@example.com', 'Company': 'Tech Solutions', 'Address': '789 Pine Rd' },
-        { 'Customer ID': 4, 'First Name': 'Bob', 'Last Name': 'Williams', 'Phone Number': 1112223333, 'Email': 'bob.w@example.com', 'Company': 'Global Innovations', 'Address': '101 Maple Ln' },
-        { 'Customer ID': 5, 'First Name': 'Eva', 'Last Name': 'Brown', 'Phone Number': 4445556666, 'Email': 'eva.b@example.com', 'Company': 'Data Systems Ltd', 'Address': '202 Cedar Blvd' },
-        { 'Customer ID': 6, 'First Name': 'Chris', 'Last Name': 'Miller', 'Phone Number': 7778889999, 'Email': 'chris.m@example.com', 'Company': 'Future Tech', 'Address': '303 Birch St' },
-        { 'Customer ID': 7, 'First Name': 'Sophia', 'Last Name': 'Anderson', 'Phone Number': 8887776666, 'Email': 'sophia.a@example.com', 'Company': 'Innovate Inc', 'Address': '404 Elm Dr' },
-        { 'Customer ID': 8, 'First Name': 'Daniel', 'Last Name': 'Taylor', 'Phone Number': 1239876543, 'Email': 'daniel.t@example.com', 'Company': 'Tech Connect', 'Address': '505 Oakwood Ave' },
-        { 'Customer ID': 9, 'First Name': 'Megan', 'Last Name': 'Carter', 'Phone Number': 9998887777, 'Email': 'megan.c@example.com', 'Company': 'Code Solutions', 'Address': '606 Pine St' },
-        { 'Customer ID': 10, 'First Name': 'Ryan', 'Last Name': 'Evans', 'Phone Number': 4441112222, 'Email': 'ryan.e@example.com', 'Company': 'Innovative Designs', 'Address': '707 Cedar Rd' },
+        { 'Customer ID': 1, 'First Name': 'John', 'Last Name': 'Doe', 'Phone Number': 1234567890, 'Email': 'john.doe@example.com', 'Company': 'ABC Corp', 'Address': '123 Main St', 'Confirmed': true, 'Active Order': true },
+        { 'Customer ID': 2, 'First Name': 'Jane', 'Last Name': 'Smith', 'Phone Number': 9876543210, 'Email': 'jane.smith@example.com', 'Company': 'XYZ Inc', 'Address': '456 Oak Ave', 'Confirmed': true, 'Active Order': true  },
+        { 'Customer ID': 3, 'First Name': 'Alice', 'Last Name': 'Johnson', 'Phone Number': 5551234567, 'Email': 'alice.j@example.com', 'Company': 'Tech Solutions', 'Address': '789 Pine Rd', 'Confirmed': true, 'Active Order': true  },
+        { 'Customer ID': 4, 'First Name': 'Bob', 'Last Name': 'Williams', 'Phone Number': 1112223333, 'Email': 'bob.w@example.com', 'Company': 'Global Innovations', 'Address': '101 Maple Ln', 'Confirmed': true, 'Active Order': true  },
+        { 'Customer ID': 5, 'First Name': 'Eva', 'Last Name': 'Brown', 'Phone Number': 4445556666, 'Email': 'eva.b@example.com', 'Company': 'Data Systems Ltd', 'Address': '202 Cedar Blvd', 'Confirmed': true, 'Active Order': true  },
+        { 'Customer ID': 6, 'First Name': 'Chris', 'Last Name': 'Miller', 'Phone Number': 7778889999, 'Email': 'chris.m@example.com', 'Company': 'Future Tech', 'Address': '303 Birch St', 'Confirmed': true, 'Active Order': true  },
+        { 'Customer ID': 7, 'First Name': 'Sophia', 'Last Name': 'Anderson', 'Phone Number': 8887776666, 'Email': 'sophia.a@example.com', 'Company': 'Innovate Inc', 'Address': '404 Elm Dr', 'Confirmed': true, 'Active Order': true  },
+        { 'Customer ID': 8, 'First Name': 'Daniel', 'Last Name': 'Taylor', 'Phone Number': 1239876543, 'Email': 'daniel.t@example.com', 'Company': 'Tech Connect', 'Address': '505 Oakwood Ave', 'Confirmed': true, 'Active Order': true  },
+        { 'Customer ID': 9, 'First Name': 'Megan', 'Last Name': 'Carter', 'Phone Number': 9998887777, 'Email': 'megan.c@example.com', 'Company': 'Code Solutions', 'Address': '606 Pine St', 'Confirmed': true, 'Active Order': true  },
+        { 'Customer ID': 10, 'First Name': 'Ryan', 'Last Name': 'Evans', 'Phone Number': 4441112222, 'Email': 'ryan.e@example.com', 'Company': 'Innovative Designs', 'Address': '707 Cedar Rd', 'Confirmed': true, 'Active Order': true  },
     ];
 
     const handleCreate = () => {
@@ -70,17 +68,21 @@ const Customers = () => {
     }
 
     const handleFilterChange = (newFilters) => {
-        const firstNameFilter = Array.isArray(newFilters.firstName) ? newFilters.firstName[0] : newFilters.firstName;
-        const lastNameFilter = Array.isArray(newFilters.lastName) ? newFilters.lastName[0] : newFilters.lastName;
-        const companyFilter = Array.isArray(newFilters.company) ? newFilters.company[0] : newFilters.company;
+
+        const confirmedFilter = Array.isArray(newFilters.confirmed) ? newFilters.confirmed[0] : newFilters.confirmed;
+        const activeOrderFilter = Array.isArray(newFilters.activeOrder) ? newFilters.activeOrder[0] : newFilters.activeOrder;
+        
+        console.log(newFilters);
+        console.log(confirmedFilter);
+        console.log(activeOrderFilter);
 
         const filteredData = dummyData.filter((row) => {
-            const matchFirstName = firstNameFilter === "All" || row['First Name'] === firstNameFilter;
-            const matchLastName = lastNameFilter === "All" || row['Last Name'] === lastNameFilter;
-            const matchCompany = companyFilter === "All" || row['Company'] === companyFilter;
+            const matchConfirmed = confirmedFilter === "All" || row['Confirmed'].toString() === confirmedFilter;
+            const matchActiveOrder = activeOrderFilter === "All" || row['Active Order'].toString() === activeOrderFilter;
 
-            return matchFirstName && matchLastName && matchCompany;
+            return matchConfirmed && matchActiveOrder;
         });
+        console.log(filteredData);
         setData(filteredData);
     }
 
