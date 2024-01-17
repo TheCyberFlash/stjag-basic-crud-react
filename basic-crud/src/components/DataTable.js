@@ -38,7 +38,9 @@ const DataTable = ({ columns, data, handleCreate, handleEdit, handleDelete, filt
                 {data.map((row, rowIndex) => (
                 <tr key={rowIndex} className={rowIndex % 2 === 0 ? "even-row" : "odd-row"}>
                     {columns.map((column, colIndex) => (
-                    <td key={colIndex} className={colIndex === 0 ? "highlight" : ""}>{row[column].toString()}</td>
+                    <td key={colIndex} className={colIndex === 0 ? "highlight" : ""}>
+                        {row[column] === true ? '✅' : row[column] === false ? '❌' : row[column].toString()}
+                    </td>
                     ))}
                     <td>
                     <button className="edit" onClick={() => handleEdit(row)}>Edit</button>
