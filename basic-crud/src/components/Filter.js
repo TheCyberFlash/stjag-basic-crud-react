@@ -6,7 +6,9 @@ const Filter = ({ label, value, options, onChange }) => {
             <label>{label}</label>
             <select value={value} onChange={(e) => onChange(e.target.value)}>
                 {options.map((option, index) => (
-                    <option key={index} value={option}>{option}</option>
+                    <option key={index} value={option.value}>
+                        {option.display}
+                    </option>
                 ))}
             </select>
         </div>
@@ -14,4 +16,3 @@ const Filter = ({ label, value, options, onChange }) => {
 }
 
 export default Filter;
-

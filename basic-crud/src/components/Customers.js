@@ -7,8 +7,16 @@ const Customers = () => {
     const [data, setData] = useState([]);
 
     const filters = {
-        confirmed : ["All", "true", "false"],
-        activeOrder : ["All", "true", "false"],
+        confirmed: [
+            { value: "All", display: "All" },
+            { value: "true", display: "✔️" },
+            { value: "false", display: "❌" },
+        ],
+        activeOrder: [
+            { value: "All", display: "All" },
+            { value: "true", display: "✔️" },
+            { value: "false", display: "❌" },
+        ],
     };
 
     const filterDisplayNames = {
@@ -71,8 +79,8 @@ const Customers = () => {
 
     const handleFilterChange = (newFilters) => {
 
-        const confirmedFilter = Array.isArray(newFilters.confirmed) ? newFilters.confirmed[0] : newFilters.confirmed;
-        const activeOrderFilter = Array.isArray(newFilters.activeOrder) ? newFilters.activeOrder[0] : newFilters.activeOrder;
+        const confirmedFilter = Array.isArray(newFilters.confirmed) ? newFilters.confirmed[0].value : newFilters.confirmed;
+        const activeOrderFilter = Array.isArray(newFilters.activeOrder) ? newFilters.activeOrder[0].value : newFilters.activeOrder;
         
         console.log(newFilters);
         console.log(confirmedFilter);

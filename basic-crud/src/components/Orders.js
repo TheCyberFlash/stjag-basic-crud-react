@@ -6,11 +6,24 @@ const Orders = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);    
     const [data, setData] = useState([]);
 
-    const orderFilters = {
-        delStatus: ["All", "Shipped", "Pending"],
-        payProtect: ["All", "true", "false"],
-        refundEligible: ["All", "true", "false"],
+    const filters = {
+        delStatus: [
+            { value: "All", display: "All" },
+            { value: "Shipped", display: "Shipped" },
+            { value: "Pending", display: "Pending" },
+        ],
+        payProtect: [
+            { value: "All", display: "All" },
+            { value: "true", display: "✔️" },
+            { value: "false", display: "❌" }, 
+        ],
+        refundEligible: [
+            { value: "All", display: "All" },
+            { value: "true", display: "✔️" },
+            { value: "false", display: "❌" },
+        ],
     };
+    
 
     const filterDisplayNames = {
         delStatus: "Delivery Status",
@@ -69,22 +82,21 @@ const Orders = () => {
     }   
 
     const handleFilterChange = (newFilters) => {
-
-        const delStatusFilter = Array.isArray(newFilters.delStatus) ? newFilters.delStatus[0] : newFilters.delStatus;
-        const payProtectFilter = Array.isArray(newFilters.payProtect) ? newFilters.payProtect[0] : newFilters.payProtect;
-        const refundEligibleFilter = Array.isArray(newFilters.refundEligible) ? newFilters.refundEligible[0] : newFilters.refundEligible;
-
+        const delStatusFilter = Array.isArray(newFilters.delStatus) ? newFilters.delStatus[0].value : newFilters.delStatus;
+        const payProtectFilter = Array.isArray(newFilters.payProtect) ? newFilters.payProtect[0].value : newFilters.payProtect;
+        const refundEligibleFilter = Array.isArray(newFilters.refundEligible) ? newFilters.refundEligible[0].value : newFilters.refundEligible;
+    
         const filteredData = dummyData.filter((row) => {
-
             const matchDelStatus = delStatusFilter === "All" || row['Del Status'] === delStatusFilter;
             const matchPayProtect = payProtectFilter === "All" || row['Pay Protect'].toString() === payProtectFilter;
             const matchRefundEligible = refundEligibleFilter === "All" || row['Refund Eligible'].toString() === refundEligibleFilter;
-
-            return matchDelStatus && matchPayProtect && matchRefundEligible;            
+    
+            return matchDelStatus && matchPayProtect && matchRefundEligible;
         });
     
         setData(filteredData);
     }
+    
     
     useEffect(() => {
         setData(dummyData);
@@ -95,7 +107,7 @@ const Orders = () => {
         <div>
             <h1>Orders</h1>
             <DataTable columns={columns} data={data} handleCreate={handleCreate} handleEdit={handleEdit} 
-                handleDelete={handleDelete} filters={orderFilters} filterDisplayNames={filterDisplayNames} handleFilterChange={handleFilterChange}/>
+                handleDelete={handleDelete} filters={filters} filterDisplayNames={filterDisplayNames} handleFilterChange={handleFilterChange}/>
             <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} handleSaveChanges={handleSaveChanges}/>
         </div>
     )

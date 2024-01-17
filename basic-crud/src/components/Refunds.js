@@ -7,9 +7,22 @@ const Refunds = () => {
     const [data, setData] = useState([]);
 
     const filters = {
-        refStatus: ["All", "Approved", "Pending"],
-        partial: ["All", "true", "false"],
-        reason: ["All", "Lost in Transit", "Defective", "Return"],
+        refStatus: [
+            { value: "All", display: "All" },
+            { value: "Approved", display: "✔️" },
+            { value: "Pending", display: "❌" },
+        ],
+        partial: [
+            { value: "All", display: "All" },
+            { value: "true", display: "✔️" },
+            { value: "false", display: "❌" },
+        ],
+        reason: [
+            { value: "All", display: "All" },
+            { value: "Lost in Transit", display: "❌" },
+            { value: "Defective", display: "❌" },
+            { value: "Return", display: "❌" },
+        ],
     };
 
     const filterDisplayNames = {
@@ -72,9 +85,9 @@ const Refunds = () => {
 
     const handleFilterChange = (newFilters) => {
 
-        const refStatusFilter = Array.isArray(newFilters.refStatus) ? newFilters.refStatus[0] : newFilters.refStatus;
-        const partialFilter = Array.isArray(newFilters.partial) ? newFilters.partial[0] : newFilters.partial;
-        const reasonFilter = Array.isArray(newFilters.reason) ? newFilters.reason[0] : newFilters.reason;
+        const refStatusFilter = Array.isArray(newFilters.refStatus) ? newFilters.refStatus[0].value : newFilters.refStatus;
+        const partialFilter = Array.isArray(newFilters.partial) ? newFilters.partial[0].value : newFilters.partial;
+        const reasonFilter = Array.isArray(newFilters.reason) ? newFilters.reason[0].value : newFilters.reason;
 
         const filteredData = dummyData.filter((row) => {
 
