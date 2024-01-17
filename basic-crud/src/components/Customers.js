@@ -24,6 +24,8 @@ const Customers = () => {
         { label: 'Email', type: 'text' },
         { label: 'Company', type: 'text' },
         { label: 'Address', type: 'text' },
+        { label: 'Confirmed', type: 'boolean' },
+        { label: 'Active Order', type: 'boolean' },
     ];
 
     const openModal = () => {
