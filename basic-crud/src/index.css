@@ -196,13 +196,13 @@ button.delete {
 }
 
 .filter-row {
-  width: 85%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
   background-color: #f0f0f0;
   border-bottom: 1px solid #ccc;
+  margin-bottom: 5px;
 }
 
 .filter-row select {
@@ -214,6 +214,6 @@ button.delete {
 }
 
 .filter-container {
-  diplay: flex;
+  display: flex;
   gap: 10px;
 }

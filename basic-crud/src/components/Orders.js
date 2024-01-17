@@ -3,13 +3,20 @@ import DataTable from "./DataTable";
 import Modal from "./Modal";
 
 const Orders = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [filters, setFilters] = useState({
-        delStatus: "All",
-        payProtect: "All",
-        refundEligible: "All",
-    });
+    const [isModalOpen, setIsModalOpen] = useState(false);    
     const [data, setData] = useState([]);
+
+    const orderFilters = {
+        delStatus: ["All", "Shipped", "Pending"],
+        payProtect: ["All", "true", "false"],
+        refundEligible: ["All", "true", "false"],
+    };
+
+    const filterDisplayNames = {
+        delStatus: "Delivery Status",
+        payProtect: "Pay Protect",
+        refundEligible: "Refund Eligible",
+    };
 
     const dummyData = [        
         { 'Order No.': 'ORD-001', 'Customer ID': 1, 'Del Status': 'Shipped', 'Amount': 50.00, 'Pay Protect': true, 'Refund Eligible': false },
@@ -59,55 +66,36 @@ const Orders = () => {
     const handleSaveChanges = () => {
         alert('Save Changes action');
         closeModal();
-    }
+    }   
 
-    useEffect(() => {
+    const handleFilterChange = (newFilters) => {
+
+        const delStatusFilter = Array.isArray(newFilters.delStatus) ? newFilters.delStatus[0] : newFilters.delStatus;
+        const payProtectFilter = Array.isArray(newFilters.payProtect) ? newFilters.payProtect[0] : newFilters.payProtect;
+        const refundEligibleFilter = Array.isArray(newFilters.refundEligible) ? newFilters.refundEligible[0] : newFilters.refundEligible;
+
         const filteredData = dummyData.filter((row) => {
-            return (
-                (filters.delStatus === "All" || row['Del Status'] === filters.delStatus) &&
-                (filters.payProtect === "All" || row['Pay Protect'] === filters.payProtect) &&
-                (filters.refundEligible === "All" || row['Refund Eligible'] === filters.refundEligible)
-            )        
-        })
-        setData(filteredData);
-    }, [filters]);
 
+            const matchDelStatus = delStatusFilter === "All" || row['Del Status'] === delStatusFilter;
+            const matchPayProtect = payProtectFilter === "All" || row['Pay Protect'].toString() === payProtectFilter;
+            const matchRefundEligible = refundEligibleFilter === "All" || row['Refund Eligible'].toString() === refundEligibleFilter;
+
+            return matchDelStatus && matchPayProtect && matchRefundEligible;            
+        });
+    
+        setData(filteredData);
+    }
+    
+    useEffect(() => {
+        setData(dummyData);
+    }, []);
+    
+    
     return (
         <div>
             <h1>Orders</h1>
-
-            {/* Temp Filter: */}
-            <div className="filter-row">
-                <div className="filter-container">
-                    <label>Del Status</label>
-                    <select value={filters.delStatus} onChange={(e) => setFilters({...filters, delStatus: e.target.value})}>
-                        <option value="All">All</option>
-                        <option value="Shipped">Shipped</option>
-                        <option value="Pending">Pending</option>
-                    </select>
-                </div>
-
-                <div className="filter-container">
-                    <label>Pay Protect</label>
-                    <select value={filters.payProtect} onChange={(e) => setFilters({...filters, payProtect: e.target.value === "All" ? "All" : e.target.value === "true"})}>
-                        <option value="All">All</option>
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
-                    </select>
-                </div>
-
-                <div className="filter-container">
-                    <label>Refund Eligible</label>
-                    <select value={filters.refundEligible} onChange={(e) => setFilters({...filters, refundEligible: e.target.value === "All" ? "All" : e.target.value === "true"})}>
-                        <option value="All">All</option>
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
-                    </select>
-                </div>
-            </div>
-
             <DataTable columns={columns} data={data} handleCreate={handleCreate} handleEdit={handleEdit} 
-                handleDelete={handleDelete} />
+                handleDelete={handleDelete} filters={orderFilters} filterDisplayNames={filterDisplayNames} handleFilterChange={handleFilterChange}/>
             <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} handleSaveChanges={handleSaveChanges}/>
         </div>
     )
