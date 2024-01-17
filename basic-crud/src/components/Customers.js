@@ -4,6 +4,19 @@ import Modal from "./Modal";
 
 const Customers = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [data, setData] = useState([]);
+
+    const filters = {
+        firstName: ["All", "John", "Jane", "Alice", "Bob", "Eva", "Chris", "Sophia", "Daniel", "Megan", "Ryan"],
+        lastName: ["All", "Doe", "Smith", "Johnson", "Williams", "Brown", "Miller", "Anderson", "Taylor", "Carter", "Evans"],
+        company: ["All", "ABC Corp", "XYZ Inc", "Tech Solutions", "Global Innovations", "Data Systems Ltd", "Future Tech", "Innovate Inc", "Tech Connect", "Code Solutions", "Innovative Designs"],
+    };
+
+    const filterDisplayNames = {
+        firstName: "First Name",
+        lastName: "Last Name",
+        company: "Company",
+    };
 
     const fields = [
         { label: 'Customer ID', type: 'number' },
@@ -25,7 +38,7 @@ const Customers = () => {
 
     const columns = ['Customer ID', 'First Name', 'Last Name', 'Phone Number', 'Email', 'Company', 'Address'];
 
-    const data = [
+    const dummyData = [
         { 'Customer ID': 1, 'First Name': 'John', 'Last Name': 'Doe', 'Phone Number': 1234567890, 'Email': 'john.doe@example.com', 'Company': 'ABC Corp', 'Address': '123 Main St' },
         { 'Customer ID': 2, 'First Name': 'Jane', 'Last Name': 'Smith', 'Phone Number': 9876543210, 'Email': 'jane.smith@example.com', 'Company': 'XYZ Inc', 'Address': '456 Oak Ave' },
         { 'Customer ID': 3, 'First Name': 'Alice', 'Last Name': 'Johnson', 'Phone Number': 5551234567, 'Email': 'alice.j@example.com', 'Company': 'Tech Solutions', 'Address': '789 Pine Rd' },
@@ -56,11 +69,26 @@ const Customers = () => {
         closeModal();
     }
 
+    const handleFilterChange = (newFilters) => {
+        const firstNameFilter = Array.isArray(newFilters.firstName) ? newFilters.firstName[0] : newFilters.firstName;
+        const lastNameFilter = Array.isArray(newFilters.lastName) ? newFilters.lastName[0] : newFilters.lastName;
+        const companyFilter = Array.isArray(newFilters.company) ? newFilters.company[0] : newFilters.company;
+
+        const filteredData = dummyData.filter((row) => {
+            const matchFirstName = firstNameFilter === "All" || row['First Name'] === firstNameFilter;
+            const matchLastName = lastNameFilter === "All" || row['Last Name'] === lastNameFilter;
+            const matchCompany = companyFilter === "All" || row['Company'] === companyFilter;
+
+            return matchFirstName && matchLastName && matchCompany;
+        });
+        setData(filteredData);
+    }
+
     return (
         <div>
             <h1>Customers</h1>
             <DataTable columns={columns} data={data} handleCreate={handleCreate} handleEdit={handleEdit} 
-                handleDelete={handleDelete} />
+                handleDelete={handleDelete} filters={filters} filterDisplayNames={filterDisplayNames} handleFilterChange={handleFilterChange}/>
             <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} handleSaveChanges={handleSaveChanges}/>
         </div>
     )
