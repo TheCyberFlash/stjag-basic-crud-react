@@ -4,6 +4,7 @@ import Modal from "./Modal";
 
 const Refunds = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [editedRecord, setEditedRecord] = useState(null);
     const [data, setData] = useState([]);
 
     const filters = {
@@ -71,7 +72,9 @@ const Refunds = () => {
     }
 
     const handleEdit = (record) => {
-        alert(`Edit action for row with Refund ID.: ${record['Refund ID']}`);
+        // alert(`Edit action for row with Refund ID.: ${record['Refund ID']}`);
+        openModal();
+        setEditedRecord(record);
     }
 
     const handleDelete = (record) => {
@@ -106,7 +109,7 @@ const Refunds = () => {
             <h1>Refunds</h1>
             <DataTable columns={columns} data={data} handleCreate={handleCreate} handleEdit={handleEdit} 
                 handleDelete={handleDelete} filters={filters} filterDisplayNames={filterDisplayNames} handleFilterChange={handleFilterChange}/>            
-            <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} handleSaveChanges={handleSaveChanges}/>
+            <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} handleSaveChanges={handleSaveChanges} editedRecord={editedRecord}/>
         </div>
     )
 }

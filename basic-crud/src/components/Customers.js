@@ -4,6 +4,7 @@ import Modal from "./Modal";
 
 const Customers = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [editedRecord, setEditedRecord] = useState(null);
     const [data, setData] = useState([]);
 
     const filters = {
@@ -65,7 +66,9 @@ const Customers = () => {
     }
 
     const handleEdit = (record) => {
-        alert(`Edit action for row with Customer ID.: ${record['Customer ID']}`);
+        // alert(`Edit action for row with Customer ID.: ${record['Customer ID']}`);
+        openModal();
+        setEditedRecord(record);
     }
 
     const handleDelete = (record) => {
@@ -101,7 +104,7 @@ const Customers = () => {
             <h1>Customers</h1>
             <DataTable columns={columns} data={data} handleCreate={handleCreate} handleEdit={handleEdit} 
                 handleDelete={handleDelete} filters={filters} filterDisplayNames={filterDisplayNames} handleFilterChange={handleFilterChange}/>
-            <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} handleSaveChanges={handleSaveChanges}/>
+            <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} handleSaveChanges={handleSaveChanges} editedRecord={editedRecord}/>
         </div>
     )
 }
