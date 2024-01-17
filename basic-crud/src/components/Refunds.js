@@ -4,6 +4,19 @@ import Modal from "./Modal";
 
 const Refunds = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [data, setData] = useState([]);
+
+    const filters = {
+        refStatus: ["All", "Approved", "Pending"],
+        partial: ["All", "true", "false"],
+        reason: ["All", "Lost in Transit", "Defective", "Return"],
+    };
+
+    const filterDisplayNames = {
+        refStatus: "Refund Status",
+        partial: "Partial",
+        reason: "Reason",
+    };
 
     const fields = [
         { label: 'Refund ID', type: 'text' },
@@ -26,7 +39,7 @@ const Refunds = () => {
 
     const columns = ['Refund ID', 'Order No', 'Customer ID', 'Customer Name', 'Reason', 'Ref Status', 'Amount', 'Partial'];
 
-    const data = [
+    const dummyData = [
         { 'Refund ID': 'REF-001', 'Order No': 'ORD-001', 'Customer ID': 1, 'Customer Name': 'John Doe', 'Reason': 'Lost in Transit', 'Ref Status': 'Approved', 'Amount': 25.50, 'Partial': true },
         { 'Refund ID': 'REF-002', 'Order No': 'ORD-002', 'Customer ID': 2, 'Customer Name': 'Jane Smith','Reason': 'Defective', 'Ref Status': 'Pending', 'Amount': 30.75, 'Partial': false },
         { 'Refund ID': 'REF-003', 'Order No': 'ORD-003', 'Customer ID': 3, 'Customer Name': 'Alice Johnson','Reason': 'Defective', 'Ref Status': 'Approved', 'Amount': 15.25, 'Partial': true },
@@ -57,11 +70,29 @@ const Refunds = () => {
         closeModal();
     }
 
+    const handleFilterChange = (newFilters) => {
+
+        const refStatusFilter = Array.isArray(newFilters.refStatus) ? newFilters.refStatus[0] : newFilters.refStatus;
+        const partialFilter = Array.isArray(newFilters.partial) ? newFilters.partial[0] : newFilters.partial;
+        const reasonFilter = Array.isArray(newFilters.reason) ? newFilters.reason[0] : newFilters.reason;
+
+        const filteredData = dummyData.filter((row) => {
+
+            const matchRefStatus = refStatusFilter === "All" || row['Ref Status'] === refStatusFilter;
+            const matchPartial = partialFilter === "All" || row['Partial'].toString() === partialFilter;
+            const matchReason = reasonFilter === "All" || row['Reason'] === reasonFilter;
+
+            return matchRefStatus && matchPartial && matchReason;
+        });
+
+        setData(filteredData);
+    }
+
     return (
         <div>
             <h1>Refunds</h1>
             <DataTable columns={columns} data={data} handleCreate={handleCreate} handleEdit={handleEdit} 
-                handleDelete={handleDelete} />            
+                handleDelete={handleDelete} filters={filters} filterDisplayNames={filterDisplayNames} handleFilterChange={handleFilterChange}/>            
             <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} handleSaveChanges={handleSaveChanges}/>
         </div>
     )
