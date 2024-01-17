@@ -1,6 +1,6 @@
 import React from "react";
 
-const Modal = ({ isOpen, closeModal, fields, handleSaveChanges }) => {
+const Modal = ({ isOpen, closeModal, fields, handleSaveChanges, editedRecord }) => {
     return (
         isOpen && (
             <div className="modal">
@@ -10,9 +10,9 @@ const Modal = ({ isOpen, closeModal, fields, handleSaveChanges }) => {
                     {fields.map((field, index) => (
                         <div key={index}> 
                             <label>{field.label}</label>
-                            {field.type === "text" && <input type="text" />}
-                            {field.type === "number" && <input type="number" />}
-                            {field.type === "boolean" && <input type="checkbox" />}
+                            {field.type === "text" && <input type="text" value={editedRecord ? editedRecord[field.label] : ''}/>}
+                            {field.type === "number" && <input type="number" value={editedRecord ? editedRecord[field.label] : ''}/>}
+                            {field.type === "boolean" && <input type="checkbox" checked={editedRecord ? editedRecord[field.label] : false}/>}
                         </div>
                     ))}
 

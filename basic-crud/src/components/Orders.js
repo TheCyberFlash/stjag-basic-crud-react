@@ -3,7 +3,8 @@ import DataTable from "./DataTable";
 import Modal from "./Modal";
 
 const Orders = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);    
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [editedRecord, setEditedRecord] = useState(null);
     const [data, setData] = useState([]);
 
     const filters = {
@@ -66,10 +67,13 @@ const Orders = () => {
     const handleCreate = () => {
         // alert('Create action');
         openModal();
+        setEditedRecord(null);
     }
 
     const handleEdit = (record) => {
-        alert(`Edit action for row with Order No.: ${record['Order No.']}`);
+        // alert(`Edit action for row with Order No.: ${record['Order No.']}`);
+        openModal();
+        setEditedRecord(record);
     }
 
     const handleDelete = (record) => {
@@ -108,7 +112,7 @@ const Orders = () => {
             <h1>Orders</h1>
             <DataTable columns={columns} data={data} handleCreate={handleCreate} handleEdit={handleEdit} 
                 handleDelete={handleDelete} filters={filters} filterDisplayNames={filterDisplayNames} handleFilterChange={handleFilterChange}/>
-            <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} handleSaveChanges={handleSaveChanges}/>
+            <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} handleSaveChanges={handleSaveChanges} editedRecord={editedRecord} />
         </div>
     )
 }
