@@ -85,17 +85,12 @@ const Customers = () => {
         const confirmedFilter = Array.isArray(newFilters.confirmed) ? newFilters.confirmed[0].value : newFilters.confirmed;
         const activeOrderFilter = Array.isArray(newFilters.activeOrder) ? newFilters.activeOrder[0].value : newFilters.activeOrder;
         
-        console.log(newFilters);
-        console.log(confirmedFilter);
-        console.log(activeOrderFilter);
-
         const filteredData = dummyData.filter((row) => {
             const matchConfirmed = confirmedFilter === "All" || row['Confirmed'].toString() === confirmedFilter;
             const matchActiveOrder = activeOrderFilter === "All" || row['Active Order'].toString() === activeOrderFilter;
 
             return matchConfirmed && matchActiveOrder;
         });
-        console.log(filteredData);
         setData(filteredData);
     }
 
