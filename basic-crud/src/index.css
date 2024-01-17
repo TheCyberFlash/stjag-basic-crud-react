@@ -194,3 +194,26 @@ button.delete {
 .modal-component input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.filter-row {
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ccc;
+}
+
+.filter-row select {
+  padding: 8px;
+  font-size: 14px;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.filter-container {
+  diplay: flex;
+  gap: 10px;
+}

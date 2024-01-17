@@ -77,31 +77,33 @@ const Orders = () => {
             <h1>Orders</h1>
 
             {/* Temp Filter: */}
-            <div>
-                <label>Del Status</label>
-                <select value={filters.delStatus} onChange={(e) => setFilters({...filters, delStatus: e.target.value})}>
-                    <option value="All">All</option>
-                    <option value="Shipped">Shipped</option>
-                    <option value="Pending">Pending</option>
-                </select>
-            </div>
+            <div className="filter-row">
+                <div className="filter-container">
+                    <label>Del Status</label>
+                    <select value={filters.delStatus} onChange={(e) => setFilters({...filters, delStatus: e.target.value})}>
+                        <option value="All">All</option>
+                        <option value="Shipped">Shipped</option>
+                        <option value="Pending">Pending</option>
+                    </select>
+                </div>
 
-            <div>
-                <label>Pay Protect</label>
-                <select value={filters.payProtect} onChange={(e) => setFilters({...filters, payProtect: e.target.value === "All" ? "All" : e.target.value === "true"})}>
-                    <option value="All">All</option>
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-                </select>
-            </div>
+                <div className="filter-container">
+                    <label>Pay Protect</label>
+                    <select value={filters.payProtect} onChange={(e) => setFilters({...filters, payProtect: e.target.value === "All" ? "All" : e.target.value === "true"})}>
+                        <option value="All">All</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
 
-            <div>
-                <label>Refund Eligible</label>
-                <select value={filters.refundEligible} onChange={(e) => setFilters({...filters, refundEligible: e.target.value === "All" ? "All" : e.target.value === "true"})}>
-                    <option value="All">All</option>
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-                </select>
+                <div className="filter-container">
+                    <label>Refund Eligible</label>
+                    <select value={filters.refundEligible} onChange={(e) => setFilters({...filters, refundEligible: e.target.value === "All" ? "All" : e.target.value === "true"})}>
+                        <option value="All">All</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
             </div>
 
             <DataTable columns={columns} data={data} handleCreate={handleCreate} handleEdit={handleEdit} 
