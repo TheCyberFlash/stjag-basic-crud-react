@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import DataTable from "./DataTable";
 import Modal from "./Modal";
+import { selectFiltersData, addOrder, updateFilters } from "../redux/ordersSlice";
 
 const Orders = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editedRecord, setEditedRecord] = useState(null);
-    const [data, setData] = useState([]);
+    const dispatch = useDispatch();
 
+    const { data, selectedFilters } = useSelector((state) => state.orders);
+    const filteredData = useSelector(selectFiltersData);
+
+    console.log(filteredData);
     const filters = {
         delStatus: [
             { value: "All", display: "All" },
@@ -23,27 +29,13 @@ const Orders = () => {
             { value: "true", display: "✔️" },
             { value: "false", display: "❌" },
         ],
-    };
-    
+    };    
 
     const filterDisplayNames = {
         delStatus: "Delivery Status",
         payProtect: "Pay Protect",
         refundEligible: "Refund Eligible",
-    };
-
-    const dummyData = [        
-        { 'Order No.': 'ORD-001', 'Customer ID': 1, 'Del Status': 'Shipped', 'Amount': 50.00, 'Pay Protect': true, 'Refund Eligible': false },
-        { 'Order No.': 'ORD-002', 'Customer ID': 2, 'Del Status': 'Pending', 'Amount': 75.50, 'Pay Protect': false, 'Refund Eligible': true },
-        { 'Order No.': 'ORD-003', 'Customer ID': 3, 'Del Status': 'Shipped', 'Amount': 30.25, 'Pay Protect': true, 'Refund Eligible': true },
-        { 'Order No.': 'ORD-004', 'Customer ID': 4, 'Del Status': 'Pending', 'Amount': 40.00, 'Pay Protect': false, 'Refund Eligible': false },
-        { 'Order No.': 'ORD-005', 'Customer ID': 5, 'Del Status': 'Shipped', 'Amount': 18.90, 'Pay Protect': true, 'Refund Eligible': true },
-        { 'Order No.': 'ORD-006', 'Customer ID': 6, 'Del Status': 'Pending', 'Amount': 22.75, 'Pay Protect': false, 'Refund Eligible': false },
-        { 'Order No.': 'ORD-007', 'Customer ID': 7, 'Del Status': 'Shipped', 'Amount': 35.60, 'Pay Protect': true, 'Refund Eligible': false },
-        { 'Order No.': 'ORD-008', 'Customer ID': 8, 'Del Status': 'Pending', 'Amount': 10.20, 'Pay Protect': false, 'Refund Eligible': true },
-        { 'Order No.': 'ORD-009', 'Customer ID': 9, 'Del Status': 'Shipped', 'Amount': 28.45, 'Pay Protect': true, 'Refund Eligible': false },
-        { 'Order No.': 'ORD-010', 'Customer ID': 10, 'Del Status': 'Pending', 'Amount': 50.00, 'Pay Protect': false, 'Refund Eligible': true },
-    ];
+    };    
 
     const fields = [
         { label: 'Order No.', type: 'text' },
@@ -82,36 +74,20 @@ const Orders = () => {
 
     const handleSaveChanges = (formValues) => {
         console.log(formValues);
-        alert('Save Changes action');
+        dispatch({ type: "addOrder", payload: formValues });
         closeModal();
     }   
 
     const handleFilterChange = (newFilters) => {
-        const delStatusFilter = Array.isArray(newFilters.delStatus) ? newFilters.delStatus[0].value : newFilters.delStatus;
-        const payProtectFilter = Array.isArray(newFilters.payProtect) ? newFilters.payProtect[0].value : newFilters.payProtect;
-        const refundEligibleFilter = Array.isArray(newFilters.refundEligible) ? newFilters.refundEligible[0].value : newFilters.refundEligible;
-    
-        const filteredData = dummyData.filter((row) => {
-            const matchDelStatus = delStatusFilter === "All" || row['Del Status'] === delStatusFilter;
-            const matchPayProtect = payProtectFilter === "All" || row['Pay Protect'].toString() === payProtectFilter;
-            const matchRefundEligible = refundEligibleFilter === "All" || row['Refund Eligible'].toString() === refundEligibleFilter;
-    
-            return matchDelStatus && matchPayProtect && matchRefundEligible;
-        });
-    
-        setData(filteredData);
+        const { delStatus, payProtect, refundEligible } = newFilters;
+        dispatch(updateFilters({ delStatusFilter: delStatus, payProtectFilter: payProtect, refundEligibleFilter: refundEligible }));
     }
-    
-    
-    useEffect(() => {
-        setData(dummyData);
-    }, []);
     
     
     return (
         <div>
             <h1>Orders</h1>
-            <DataTable columns={columns} data={data} handleCreate={handleCreate} handleEdit={handleEdit} 
+            <DataTable columns={columns} data={filteredData} handleCreate={handleCreate} handleEdit={handleEdit} 
                 handleDelete={handleDelete} filters={filters} filterDisplayNames={filterDisplayNames} handleFilterChange={handleFilterChange}/>
             <Modal isOpen={isModalOpen} closeModal={closeModal} fields={fields} handleSaveChanges={handleSaveChanges} editedRecord={editedRecord} />
         </div>
