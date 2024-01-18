@@ -53,16 +53,13 @@ const customersSlice = createSlice({
             return;
         },
         updateFilters: (state, action) => {
-            console.log("previous state: ", state.selectedFilters);
         
             const { confirmedFilter, activeOrdersFilter } = action.payload;
         
             state.selectedFilters = {
                 confirmed: confirmedFilter,
                 activeOrders: activeOrdersFilter,
-            };
-        
-            console.log("new state: ", state.selectedFilters);
+            };        
         },        
     },
 });

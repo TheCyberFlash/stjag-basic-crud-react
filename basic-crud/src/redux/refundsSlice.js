@@ -59,18 +59,14 @@ const refundsSlice = createSlice({
         addRefund: (state, action) => {
             return;
         },
-        updateFilters: (state, action) => {
-            console.log("previous state: ", state.selectedFilters);
-        
+        updateFilters: (state, action) => {        
             const { refStatusFilter, partialFilter, reasonFilter } = action.payload;
         
             state.selectedFilters = {
                 refStatus: refStatusFilter,
                 partial: partialFilter,
                 reason: reasonFilter,
-            };
-        
-            console.log("new state: ", state.selectedFilters);
+            };        
         },
     },
 });

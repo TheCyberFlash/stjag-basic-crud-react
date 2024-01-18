@@ -35,7 +35,6 @@ const Orders = () => {
     }
 
     const handleSaveChanges = (formValues) => {
-        console.log(formValues);
         dispatch(addOrder(formValues));
         closeModal();
     }   

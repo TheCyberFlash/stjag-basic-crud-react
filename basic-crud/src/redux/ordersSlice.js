@@ -56,18 +56,14 @@ const orderSlice = createSlice({
         addOrder: (state, action) => {
             return;
         },
-        updateFilters: (state, action) => {
-            console.log("previous state: ", state.selectedFilters);
-        
+        updateFilters: (state, action) => {      
             const { delStatusFilter, payProtectFilter, refundEligibleFilter } = action.payload;
         
             state.selectedFilters = {
                 delStatus: delStatusFilter,
                 payProtect: payProtectFilter,
                 refundEligible: refundEligibleFilter,
-            };
-        
-            console.log("new state: ", state.selectedFilters);
+            };        
         },
                
     },
