@@ -19,6 +19,34 @@ const customersSlice = createSlice({
             confirmed: "All",
             activeOrders: "All",
         },
+        fields: [
+            { label: 'Customer ID', type: 'number' },
+            { label: 'First Name', type: 'text' },
+            { label: 'Last Name', type: 'text' },
+            { label: 'Phone Number', type: 'number' },
+            { label: 'Email', type: 'text' },
+            { label: 'Company', type: 'text' },
+            { label: 'Address', type: 'text' },
+            { label: 'Confirmed', type: 'boolean' },
+            { label: 'Active Order', type: 'boolean' },
+        ],
+        filterDisplayNames: {
+            confirmed : "Confirmed",
+            activeOrder : "Active Order",
+        },
+        filters: {
+            confirmed: [
+                { value: "All", display: "All" },
+                { value: "true", display: "✔️" },
+                { value: "false", display: "❌" },
+            ],
+            activeOrder: [
+                { value: "All", display: "All" },
+                { value: "true", display: "✔️" },
+                { value: "false", display: "❌" },
+            ],
+        },
+        columns: ['Customer ID', 'First Name', 'Last Name', 'Phone Number', 'Email', 'Company', 'Address', 'Confirmed', 'Active Order'], 
     },
     reducers: {
         addCustomer: (state, action) => {
