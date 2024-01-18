@@ -80,7 +80,8 @@ const Orders = () => {
         alert(`Delete action for row with Order No.: ${record['Order No.']}`);
     }
 
-    const handleSaveChanges = () => {
+    const handleSaveChanges = (formValues) => {
+        console.log(formValues);
         alert('Save Changes action');
         closeModal();
     }   
