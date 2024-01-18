@@ -20,6 +20,40 @@ const refundsSlice = createSlice({
             partial: "All",
             reason: "All",
         },
+        fields: [
+            { label: 'Refund ID', type: 'text' },
+            { label: 'Order No', type: 'text' },
+            { label: 'Customer ID', type: 'number' },
+            { label: 'Customer Name', type: 'text' },
+            { label: 'Reason', type: 'text' },
+            { label: 'Ref Status', type: 'text' },
+            { label: 'Amount', type: 'number' },
+            { label: 'Partial', type: 'boolean' },
+        ],
+        filters: {
+            refStatus: [
+                { value: "All", display: "All" },
+                { value: "Approved", display: "✔️" },
+                { value: "Pending", display: "❌" },
+            ],
+            partial: [
+                { value: "All", display: "All" },
+                { value: "true", display: "✔️" },
+                { value: "false", display: "❌" },
+            ],
+            reason: [
+                { value: "All", display: "All" },
+                { value: "Lost in Transit", display: "Lost in Transit" },
+                { value: "Defective", display: "Defective" },
+                { value: "Return", display: "Return" },
+            ],
+        },
+        filterDisplayNames: {
+            refStatus: "Refund Status",
+            partial: "Partial",
+            reason: "Reason",
+        },
+        columns: ['Refund ID', 'Order No', 'Customer ID', 'Customer Name', 'Reason', 'Ref Status', 'Amount', 'Partial'],
     },
     reducers: {
         addRefund: (state, action) => {
