@@ -20,6 +20,37 @@ const orderSlice = createSlice({
             payProtect: "All",
             refundEligible: "All",
         },
+        fields: [
+            { label: 'Order No.', type: 'text' },
+            { label: 'Customer ID', type: 'number' },
+            { label: 'Del Status', type: 'text' },
+            { label: 'Amount', type: 'number' },
+            { label: 'Pay Protect', type: 'boolean' },
+            { label: 'Refund Eligible', type: 'boolean' },
+        ],
+        filters: {
+            delStatus: [
+                { value: "All", display: "All" },
+                { value: "Shipped", display: "Shipped" },
+                { value: "Pending", display: "Pending" },
+            ],
+            payProtect: [
+                { value: "All", display: "All" },
+                { value: "true", display: "✔️" },
+                { value: "false", display: "❌" }, 
+            ],
+            refundEligible: [
+                { value: "All", display: "All" },
+                { value: "true", display: "✔️" },
+                { value: "false", display: "❌" },
+            ],
+        },
+        columns: ['Order No.', 'Customer ID', 'Del Status', 'Amount', 'Pay Protect', 'Refund Eligible'],
+        filterDisplayNames: {
+            delStatus: "Delivery Status",
+            payProtect: "Pay Protect",
+            refundEligible: "Refund Eligible",
+        },
     },
     reducers: {
         addOrder: (state, action) => {

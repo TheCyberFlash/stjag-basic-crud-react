@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DataTable from "./DataTable";
 import Modal from "./Modal";
@@ -9,42 +9,8 @@ const Orders = () => {
     const [editedRecord, setEditedRecord] = useState(null);
     const dispatch = useDispatch();
 
-    const { data, selectedFilters } = useSelector((state) => state.orders);
+    const { filters, filterDisplayNames, fields, columns } = useSelector((state) => state.orders);
     const filteredData = useSelector(selectFiltersData);
-
-    console.log(filteredData);
-    const filters = {
-        delStatus: [
-            { value: "All", display: "All" },
-            { value: "Shipped", display: "Shipped" },
-            { value: "Pending", display: "Pending" },
-        ],
-        payProtect: [
-            { value: "All", display: "All" },
-            { value: "true", display: "✔️" },
-            { value: "false", display: "❌" }, 
-        ],
-        refundEligible: [
-            { value: "All", display: "All" },
-            { value: "true", display: "✔️" },
-            { value: "false", display: "❌" },
-        ],
-    };    
-
-    const filterDisplayNames = {
-        delStatus: "Delivery Status",
-        payProtect: "Pay Protect",
-        refundEligible: "Refund Eligible",
-    };    
-
-    const fields = [
-        { label: 'Order No.', type: 'text' },
-        { label: 'Customer ID', type: 'number' },
-        { label: 'Del Status', type: 'text' },
-        { label: 'Amount', type: 'number' },
-        { label: 'Pay Protect', type: 'boolean' },
-        { label: 'Refund Eligible', type: 'boolean' },
-    ];
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -54,16 +20,12 @@ const Orders = () => {
         setIsModalOpen(false);
     }
 
-    const columns = ['Order No.', 'Customer ID', 'Del Status', 'Amount', 'Pay Protect', 'Refund Eligible'];    
-
     const handleCreate = () => {
-        // alert('Create action');
         openModal();
         setEditedRecord(null);
     }
 
     const handleEdit = (record) => {
-        // alert(`Edit action for row with Order No.: ${record['Order No.']}`);
         openModal();
         setEditedRecord(record);
     }
@@ -74,15 +36,14 @@ const Orders = () => {
 
     const handleSaveChanges = (formValues) => {
         console.log(formValues);
-        dispatch({ type: "addOrder", payload: formValues });
+        dispatch(addOrder(formValues));
         closeModal();
     }   
 
     const handleFilterChange = (newFilters) => {
         const { delStatus, payProtect, refundEligible } = newFilters;
         dispatch(updateFilters({ delStatusFilter: delStatus, payProtectFilter: payProtect, refundEligibleFilter: refundEligible }));
-    }
-    
+    }    
     
     return (
         <div>
