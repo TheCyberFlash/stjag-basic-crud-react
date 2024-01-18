@@ -25,9 +25,9 @@ const Refunds = () => {
         ],
         reason: [
             { value: "All", display: "All" },
-            { value: "Lost in Transit", display: "❌" },
-            { value: "Defective", display: "❌" },
-            { value: "Return", display: "❌" },
+            { value: "Lost in Transit", display: "Lost in Transit" },
+            { value: "Defective", display: "Defective" },
+            { value: "Return", display: "Return" },
         ],
     };
 
