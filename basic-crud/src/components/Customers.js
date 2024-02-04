@@ -4,7 +4,6 @@ import DataTable from "./DataTable";
 import Modal from "./Modal";
 import {
   selectFiltersData,
-  addCustomer,
   updateFilters,
 } from "../redux/customersSlice";
 
@@ -14,8 +13,6 @@ const Customers = () => {
   const dispatch = useDispatch();
 
   const {
-    data,
-    selectedFilters,
     fields,
     filterDisplayNames,
     filters,
@@ -32,12 +29,10 @@ const Customers = () => {
   };
 
   const handleCreate = () => {
-    // alert('Create action');
     openModal();
   };
 
   const handleEdit = (record) => {
-    // alert(`Edit action for row with Customer ID.: ${record['Customer ID']}`);
     openModal();
     setEditedRecord(record);
   };
