@@ -1,15 +1,13 @@
 {
   "files": {
     "main.css": "/stjag-basic-crud-react/static/css/main.9803c34d.css",
-    "main.js": "/stjag-basic-crud-react/static/js/main.f94c41b8.js",
-    "static/js/787.2cf37976.chunk.js": "/stjag-basic-crud-react/static/js/787.2cf37976.chunk.js",
+    "main.js": "/stjag-basic-crud-react/static/js/main.db4436e1.js",
     "index.html": "/stjag-basic-crud-react/index.html",
     "main.9803c34d.css.map": "/stjag-basic-crud-react/static/css/main.9803c34d.css.map",
-    "main.f94c41b8.js.map": "/stjag-basic-crud-react/static/js/main.f94c41b8.js.map",
-    "787.2cf37976.chunk.js.map": "/stjag-basic-crud-react/static/js/787.2cf37976.chunk.js.map"
+    "main.db4436e1.js.map": "/stjag-basic-crud-react/static/js/main.db4436e1.js.map"
   },
   "entrypoints": [
     "static/css/main.9803c34d.css",
-    "static/js/main.f94c41b8.js"
+    "static/js/main.db4436e1.js"
   ]
 }
